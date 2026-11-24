@@ -1,0 +1,1 @@
+# No service-specific subnets: gemini is fronted by a CDN; route by domains from gemini-domains.txt

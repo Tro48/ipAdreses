@@ -12,7 +12,10 @@
 | `openai-domains.txt` | домены | только OpenAI/ChatGPT — для раздельной маршрутизации |
 | `anthropic-domains.txt` | домены | только Anthropic/Claude — для раздельной маршрутизации |
 | `gemini-domains.txt` | домены | только Google Gemini — для раздельной маршрутизации |
-| `cidrs.txt` | IP/CIDR, по одному на строку | подсети OpenAI — Podkop (Remote Subnet Lists) |
+| `cidrs.txt` | IP/CIDR, по одному на строку | все подсети разом (сейчас только OpenAI) — Podkop (Remote Subnet Lists) |
+| `openai-cidrs.txt` | IP/CIDR | подсети OpenAI — для раздельной маршрутизации |
+| `anthropic-cidrs.txt` | IP/CIDR | пусто: у Claude сервис-специфичных подсетей нет (за Cloudflare) |
+| `gemini-cidrs.txt` | IP/CIDR | пусто: у Gemini нет (за фронтом Google; его подсети охватывают множество других сервисов) |
 | `singbox-ai.json` | rule-set sing-box, version 3 | все сервисы разом — Podkop, NekoBox, SFI |
 | `openai.txt`, `anthropic.txt`, `gemini.txt` | матчеры Xray (`domain:`, `full:`, `regexp:`, ключевые слова) | Xray / init-скрипты |
 | `ai-cidrs.txt` | CIDR для Xray | Xray / init-скрипты |
@@ -35,13 +38,13 @@
 - Remote Domain Lists:
   - `https://raw.githubusercontent.com/Tro48/ipAdreses/main/openai-domains.txt`
   - `https://raw.githubusercontent.com/Tro48/ipAdreses/main/gemini-domains.txt`
-- Remote Subnet Lists: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/cidrs.txt`
+- Remote Subnet Lists: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/openai-cidrs.txt`
 
 Секция «ai-fr» (подключение — VLESS-ссылка французского сервера):
 
 - Remote Domain Lists: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/anthropic-domains.txt`
 
-Общий `domains.txt` при такой схеме не подключайте.
+Для секции «ai-fr» подсети не нужны: у Claude сервис-специфичных подсетей нет (весь трафик за Cloudflare), `anthropic-cidrs.txt` существует только для единообразия и содержит лишь комментарий. Общий `domains.txt` при такой схеме не подключайте.
 
 ## Использование в sing-box
 

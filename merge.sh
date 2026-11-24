@@ -134,6 +134,18 @@ cp "$WORK_DIR/lists/gemini.txt" "$BASE_DIR/gemini.txt"
 cp "$WORK_DIR/lists/ai-cidrs.txt" "$BASE_DIR/ai-cidrs.txt"
 cp "$BASE_DIR/ai-cidrs.txt" "$BASE_DIR/cidrs.txt"
 
+# По-сервисные списки подсетей. У Anthropic и Gemini сервис-специфичных подсетей
+# нет (fronts Cloudflare/Google), поэтому файлы содержат только комментарий —
+# Podkop такие строки пропускает. Подключать их можно, но смысла нет.
+for svc in openai anthropic gemini; do
+  if [[ -s "$WORK_DIR/lists/cidrs-$svc.txt" ]]; then
+    cp "$WORK_DIR/lists/cidrs-$svc.txt" "$BASE_DIR/$svc-cidrs.txt"
+  else
+    printf '# No service-specific subnets: %s is fronted by a CDN; route by domains from %s-domains.txt\n' \
+      "$svc" "$svc" > "$BASE_DIR/$svc-cidrs.txt"
+  fi
+done
+
 # Простые списки доменов: общий и по сервисам (для Podkop и любых клиентов)
 for svc in openai anthropic gemini; do
   sed -n 's/^domain://p; s/^full://p' "$BASE_DIR/$svc.txt" | sort -u > "$BASE_DIR/$svc-domains.txt"
