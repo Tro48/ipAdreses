@@ -134,7 +134,11 @@ cp "$WORK_DIR/lists/gemini.txt" "$BASE_DIR/gemini.txt"
 cp "$WORK_DIR/lists/ai-cidrs.txt" "$BASE_DIR/ai-cidrs.txt"
 cp "$BASE_DIR/ai-cidrs.txt" "$BASE_DIR/cidrs.txt"
 
-sed -n 's/^domain://p; s/^full://p' "$BASE_DIR/openai.txt" "$BASE_DIR/anthropic.txt" "$BASE_DIR/gemini.txt" \
+# Простые списки доменов: общий и по сервисам (для Podkop и любых клиентов)
+for svc in openai anthropic gemini; do
+  sed -n 's/^domain://p; s/^full://p' "$BASE_DIR/$svc.txt" | sort -u > "$BASE_DIR/$svc-domains.txt"
+done
+cat "$BASE_DIR/openai-domains.txt" "$BASE_DIR/anthropic-domains.txt" "$BASE_DIR/gemini-domains.txt" \
   | sort -u > "$BASE_DIR/domains.txt"
 
 write_singbox

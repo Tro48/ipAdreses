@@ -8,9 +8,12 @@
 
 | Файл | Формат | Назначение |
 |---|---|---|
-| `domains.txt` | домены, по одному на строку | Podkop (Remote Domain Lists), любой клиент |
-| `cidrs.txt` | IP/CIDR, по одному на строку | Podkop (Remote Subnet Lists) |
-| `singbox-ai.json` | rule-set sing-box, version 3 | Podkop, NekoBox, SFI и др. sing-box-клиенты |
+| `domains.txt` | домены, по одному на строку | все сервисы разом — Podkop (Remote Domain Lists), любой клиент |
+| `openai-domains.txt` | домены | только OpenAI/ChatGPT — для раздельной маршрутизации |
+| `anthropic-domains.txt` | домены | только Anthropic/Claude — для раздельной маршрутизации |
+| `gemini-domains.txt` | домены | только Google Gemini — для раздельной маршрутизации |
+| `cidrs.txt` | IP/CIDR, по одному на строку | подсети OpenAI — Podkop (Remote Subnet Lists) |
+| `singbox-ai.json` | rule-set sing-box, version 3 | все сервисы разом — Podkop, NekoBox, SFI |
 | `openai.txt`, `anthropic.txt`, `gemini.txt` | матчеры Xray (`domain:`, `full:`, `regexp:`, ключевые слова) | Xray / init-скрипты |
 | `ai-cidrs.txt` | CIDR для Xray | Xray / init-скрипты |
 
@@ -22,6 +25,23 @@
 - **Remote Subnet Lists**: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/cidrs.txt`
 
 После сохранения Podkop сам скачивает и периодически обновляет списки. Для Gemini у Podkop есть и встроенный список «Google AI» — подключайте что-то одно, чтобы не дублировать правила.
+
+### Раздельная маршрутизация по серверам
+
+Если выходы имеют разную репутацию (например, один сервер заблокирован у части сервисов), создайте две секции с разными подключениями и по-сервисными списками:
+
+Секция «ai-us» (подключение — VLESS-ссылка американского сервера):
+
+- Remote Domain Lists:
+  - `https://raw.githubusercontent.com/Tro48/ipAdreses/main/openai-domains.txt`
+  - `https://raw.githubusercontent.com/Tro48/ipAdreses/main/gemini-domains.txt`
+- Remote Subnet Lists: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/cidrs.txt`
+
+Секция «ai-fr» (подключение — VLESS-ссылка французского сервера):
+
+- Remote Domain Lists: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/anthropic-domains.txt`
+
+Общий `domains.txt` при такой схеме не подключайте.
 
 ## Использование в sing-box
 
