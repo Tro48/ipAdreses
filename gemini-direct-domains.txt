@@ -1,4 +1,0 @@
-accounts.google.com
-businessaicode.googleapis.com
-oauth2.googleapis.com
-www.googleapis.com

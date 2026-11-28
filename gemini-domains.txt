@@ -1,3 +1,4 @@
+accounts.google.com
 ai.google.dev
 ai.studio
 aicode.googleapis.com
@@ -15,6 +16,7 @@ appsgenaiserver-pa.clients.google.com
 appsgenaiserver-pa.clients6.google.com
 appsgenaiserver-pa.googleapis.com
 bard.google.com
+businessaicode.googleapis.com
 cloudaicompanion.googleapis.com
 cloudcode-pa.googleapis.com
 daily-cloudcode-pa.googleapis.com
@@ -43,9 +45,11 @@ notebooklm-pa.googleapis.com
 notebooklm.google
 notebooklm.google.com
 notebooklm.googleapis.com
+oauth2.googleapis.com
 opal.google
 opal.google.com
 proactivebackend-pa.googleapis.com
 robinfrontend-pa.googleapis.com
 stitch.withgoogle.com
 webchannel-alkalimakersuite-pa.clients6.google.com
+www.googleapis.com

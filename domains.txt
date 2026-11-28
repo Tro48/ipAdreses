@@ -1,3 +1,4 @@
+accounts.google.com
 ai.com
 ai.google.dev
 ai.studio
@@ -24,6 +25,7 @@ appsgenaiserver-pa.googleapis.com
 auth0.com
 bard.google.com
 browser-intake-datadoghq.com
+businessaicode.googleapis.com
 cdn.usefathom.com
 challenges.cloudflare.com
 chat.com
@@ -89,6 +91,7 @@ o33249.ingest.us.sentry.io
 oaistatic.com
 oaistatsig.com
 oaiusercontent.com
+oauth2.googleapis.com
 observeit.net
 opal.google
 opal.google.com
@@ -114,3 +117,4 @@ stitch.withgoogle.com
 stripe.com
 turn.livekit.cloud
 webchannel-alkalimakersuite-pa.clients6.google.com
+www.googleapis.com

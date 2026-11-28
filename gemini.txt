@@ -35,6 +35,7 @@ domain:opal.google.com
 domain:proactivebackend-pa.googleapis.com
 domain:robinfrontend-pa.googleapis.com
 domain:stitch.withgoogle.com
+full:accounts.google.com
 full:ai.google.dev
 full:alkalicore-pa.clients6.google.com
 full:alkalimakersuite-pa.clients6.google.com
@@ -43,6 +44,7 @@ full:antigravity.googleapis.com
 full:appsgenaiserver-pa.clients.google.com
 full:appsgenaiserver-pa.clients6.google.com
 full:appsgenaiserver-pa.googleapis.com
+full:businessaicode.googleapis.com
 full:cloudaicompanion.googleapis.com
 full:cloudcode-pa.googleapis.com
 full:daily-cloudcode-pa.googleapis.com
@@ -50,5 +52,7 @@ full:geminiweb-pa.clients.google.com
 full:geminiweb-pa.clients6.google.com
 full:notebooklm-pa.googleapis.com
 full:notebooklm.googleapis.com
+full:oauth2.googleapis.com
 full:webchannel-alkalimakersuite-pa.clients6.google.com
+full:www.googleapis.com
 generativelanguage
