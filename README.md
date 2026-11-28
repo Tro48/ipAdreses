@@ -12,6 +12,7 @@
 | `openai-domains.txt` | домены | только OpenAI/ChatGPT — для раздельной маршрутизации |
 | `anthropic-domains.txt` | домены | только Anthropic/Claude — для раздельной маршрутизации |
 | `gemini-domains.txt` | домены | только Google Gemini — для раздельной маршрутизации |
+| `gemini-direct-domains.txt` | домены | прямое подключение к Google API и авторизации |
 | `cidrs.txt` | IP/CIDR, по одному на строку | все подсети разом (сейчас только OpenAI) — Podkop (Remote Subnet Lists) |
 | `openai-cidrs.txt` | IP/CIDR | подсети OpenAI — для раздельной маршрутизации |
 | `anthropic-cidrs.txt` | IP/CIDR | пусто: у Claude сервис-специфичных подсетей нет (за Cloudflare) |
@@ -45,6 +46,21 @@
 - Remote Domain Lists: `https://raw.githubusercontent.com/Tro48/ipAdreses/main/anthropic-domains.txt`
 
 Для секции «ai-fr» подсети не нужны: у Claude сервис-специфичных подсетей нет (весь трафик за Cloudflare), `anthropic-cidrs.txt` существует только для единообразия и содержит лишь комментарий. Общий `domains.txt` при такой схеме не подключайте.
+
+### Прямой доступ к Google API и авторизации
+
+В Podkop добавьте [gemini-direct-domains.txt](https://raw.githubusercontent.com/Tro48/ipAdreses/main/gemini-direct-domains.txt) в **Remote Domain Lists** секции типа [Exclusion](https://podkop.net/docs/sections/#exclusion). В sing-box добавьте эти домены в правило `domain` для прямого подключения перед правилом прокси, в Xray используйте `full:` для каждого домена. Для прямых подключений используйте обычный DNS.
+
+Маршрутизация задаётся по доменам. IP из схемы подключения приведены для справки.
+
+| Домен | Маршрут | IP |
+|---|---|---|
+| `aicode.googleapis.com` | Гео-DNS / прокси | `198.18.1.98` |
+| `cloudcode-pa.googleapis.com` | Гео-DNS / прокси | `198.18.1.71` |
+| `businessaicode.googleapis.com` | Напрямую | `172.217.113.4` |
+| `oauth2.googleapis.com` | Напрямую | `209.85.233.95` |
+| `accounts.google.com` | Напрямую | `74.125.131.84` |
+| `www.googleapis.com` | Напрямую | `172.217.115.4` |
 
 ## Использование в sing-box
 

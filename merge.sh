@@ -52,7 +52,21 @@ merge_lists() {
       esac
     done < "$f" >> "$out"
   done
-  sort -u "$out" -o "$out"
+
+  if [[ "$service" == gemini ]]; then
+    # Эти домены должны оставаться в прокси-списке при изменении upstream.
+    printf '%s\n' 'domain:aicode.googleapis.com' 'full:cloudcode-pa.googleapis.com' >> "$out"
+  fi
+
+  awk '
+    FILENAME == ARGV[1] {
+      direct[$0] = direct["domain:" $0] = direct["full:" $0] = 1
+      next
+    }
+    !($0 in direct)
+  ' "$BASE_DIR/gemini-direct-domains.txt" "$out" | sort -u > "$out.tmp"
+  mv "$out.tmp" "$out"
+
   # full:X избыточен, если уже покрыт domain:X
   while IFS= read -r line; do
     [[ "$line" == full:* ]] || continue
